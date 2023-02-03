@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: portainer_portainer1
+      APP_PORT: 9000
+
+  server:
+    image: portainer/portainer-ce
+    restart: on-failure
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "{{ config_path }}/system/portainer:/data"
